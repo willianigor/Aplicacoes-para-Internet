@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <h1>Cadastro de Usuário</h1>
+    <form>
+        <table border="2">
+            <tbody>
+                <tr>
+                    <td><label for="nome">Nome</label></td>
+                    <td><input type="text" name="nome" id="nome" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email">E-mail</label></td>
+                    <td><input type="email" name="email" id="email" required></td>
+                </tr>
+                <tr>
+                    <td><label for="senha">Senha</label></td>
+                    <td><input type="password" name="senha" id="senha" required></td>
+                </tr>
+                <tr>
+                    <td><label for="data_nascimento">Data de Nascimento</label></td>
+                    <td><input type="date" name="data_nascimento" id="data_nascimento" required></td>
+                </tr>
+                <tr>
+                    <td><label for="sexo">Gênero</label></td>
+                    <td><input type="radio" name="sexo" id="masculino" value="masculino"> <label for="masculino">Masculino</label> <input type="radio" name="sexo" id="feminino" value="feminino"> <label for="feminino">Feminino</label></td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td colspan="2"><input type="reset" value="Limpar"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Feedback</title>
+</head>
+<body>
+    <h1>Formulário de Feedback</h1>
+    <form>
+        <table border="3">
+            <tbody>
+                <tr>
+                    <td><label for="nome_cliente">Nome</label></td>
+                    <td><input type="text" name="nome_cliente" id="nome_cliente" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email">E-mail</label></td>
+                    <td><input type="email" name="email" id="email" required></td>
+                </tr>
+                <tr>
+                    <td>Avaliação</td>
+                    <td>
+                        <input type="radio" name="nota_avaliacao" id="1estrela" required  value="1"><label for="1estrela">⭐ <br></label>
+
+                        <input type="radio" name="nota_avaliacao" id="2estrela" value="2"> <label for="2estrela">⭐⭐ <br></label>
+                        
+                        <input type="radio" name="nota_avaliacao" id="3estrela" value="3"> <label for="3estrela">⭐⭐⭐ <br></label>
+                        
+                        <input type="radio" name="nota_avaliacao" id="4estrela" value="4"> <label for="4estrela">⭐⭐⭐⭐<br></label>
+                        
+                        <input type="radio" name="nota_avaliacao" id="5estrela" value="5"> <label for="5estrela">⭐⭐⭐⭐⭐</label></td>
+                </tr>
+                <tr>
+                    <td><label for="comentario">Comentários</label></td>
+                    <td><textarea name="comentario" id="comentario" placeholder="Digite seu comentário."></textarea></td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td colspan="2"><input type="submit" value="Enviar">
+                                    <input type="reset" value="Limpar"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
