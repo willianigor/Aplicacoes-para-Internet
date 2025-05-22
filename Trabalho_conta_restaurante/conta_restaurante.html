@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Conta do Restaurante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgba(24, 23, 23, 0.915);
+      padding: 20px;
+    }
+
+    h2 {
+      color: black;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 0, 0.845);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(14, 10, 10, 0.981);
+      max-width: 800px;
+      margin: auto;
+    }
+
+    select, input[type="number"], input[type="text"] {
+      padding: 5px;
+      margin: 5px;
+      border: 1px solid #030302;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 5px 10px;
+      margin: 5px;
+      background-color: #e31e1e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: green;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: red;
+    }
+
+    .total {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Conta do Restaurante</h2>
+
+    <label for="item">Item:</label>
+    <select id="item" onchange="atualizarPreco()">
+      <option value="">Selecione</option>
+      <option value="Pizza">Pizza</option>
+      <option value="Lasanha">Lasanha</option>
+      <option value="Refrigerante">Refrigerante</option>
+      <option value="Água">Água</option>
+    </select>
+
+    <label for="preco">Preço Unitário:</label>
+    <input type="text" id="preco" readonly>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" min="1" value="1">
+
+    <button onclick="adicionarItem()">Adicionar</button>
+
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantidade</th>
+          <th>Preço Unitário</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="total" id="totalConta">Total: R$ 0.00</div>
+
+    <label for="gorjeta">Gorjeta (%):</label>
+    <input type="number" id="gorjeta" min="0" value="0">
+
+    <button onclick="fecharConta()">Fechar Conta</button>
+
+    <div class="total" id="totalFinal"></div>
+  </div>
+
+  <script>
+    const precos = {
+      'Pizza': 40.00,
+      'Lasanha': 30.00,
+      'Refrigerante': 8.00,
+      'Água': 5.00
+    };
+
+    let totalGeral = 0;
+
+    function atualizarPreco() {
+      const item = document.getElementById("item").value;
+      const precoInput = document.getElementById("preco");
+      precoInput.value = item ? `R$ ${precos[item].toFixed(2)}` : '';
+    }
+
+    function adicionarItem() {
+      const item = document.getElementById("item").value;
+      const quantidade = parseInt(document.getElementById("quantidade").value);
+      if (!item || quantidade <= 0) return;
+
+      const precoUnitario = precos[item];
+      const totalItem = precoUnitario * quantidade;
+
+      const tabela = document.getElementById("tabela").getElementsByTagName('tbody')[0];
+      const novaLinha = tabela.insertRow();
+      novaLinha.innerHTML = `
+        <td>${item}</td>
+        <td>${quantidade}</td>
+        <td>R$ ${precoUnitario.toFixed(2)}</td>
+        <td>R$ ${totalItem.toFixed(2)}</td>
+      `;
+
+      totalGeral += totalItem;
+      atualizarTotal();
+    }
+
+    function atualizarTotal() {
+      document.getElementById("totalConta").innerText = `Total: R$ ${totalGeral.toFixed(2)}`;
+      document.getElementById("totalFinal").innerText = '';
+    }
+
+    function fecharConta() {
+      const gorjetaPercentual = parseFloat(document.getElementById("gorjeta").value);
+      const valorGorjeta = totalGeral * (gorjetaPercentual / 100);
+      const totalComGorjeta = totalGeral + valorGorjeta;
+
+      document.getElementById("totalFinal").innerText = 
+        `Valor final com ${gorjetaPercentual}% de gorjeta: R$ ${totalComGorjeta.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
+
+<!--
+Igor Willian Alves Ferreira dos Santos
+RGM:43762352
+-->
